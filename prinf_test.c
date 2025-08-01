@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 				long n = (long)va_arg(args, int);
 				char buf[21];
 				int j = 0;
-				unsigned long int num = 0;
+				unsigned long num = 0;
 
 				if (n == 0)
 				{
