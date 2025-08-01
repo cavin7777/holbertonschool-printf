@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 				int n = va_arg(args, int);
 				char buf[20];
 				int j = 0;
-				int neg = 0;
+				unsigned int num = 0;
 
 				if (n == 0)
 				{
@@ -71,21 +71,15 @@ int _printf(const char *format, ...)
 				{
 					if (n < 0)
 					{
-						neg = 1;
-						n = -n;
+						write(1, "-", 1);
+						count++;
+						num = (unsigned int)(-(long)n);
 					}
-
 					while (n > 0)
 					{
 						buf[j++] = (n % 10) + '0';
-						n /= 10;
+						num /= 10;
 					}
-
-					if (neg)
-					{
-						buf[j++] = '-';
-					}
-
 					while (j--)
 					{
 						write(1, &buf[j], 1);
