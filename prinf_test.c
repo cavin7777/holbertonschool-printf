@@ -57,10 +57,10 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == 'd' || format[i] == 'i')
 			{
-				int n = va_arg(args, int);
-				char buf[20];
+				long n = (long)va_arg(args, int);
+				char buf[21];
 				int j = 0;
-				unsigned int num = 0;
+				unsigned long int num = 0;
 
 				if (n == 0)
 				{
@@ -73,7 +73,11 @@ int _printf(const char *format, ...)
 					{
 						write(1, "-", 1);
 						count++;
-						num = (unsigned int)(-(long)n);
+						num = (unsigned long)(-n);
+					}
+					else
+					{
+						num = (unsigned long)n;
 					}
 					while (n > 0)
 					{
