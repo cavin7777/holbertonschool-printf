@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			write(1, &format[i], 0);
+			write(1, &format[i], 1);
 			count++;
 		}
 		else
@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 				long n = (long)va_arg(args, int);
 				char buf[21];
 				int j = 0;
-				unsigned long num = 0;
+				unsigned long num;
 
 				if (n == 0)
 				{
@@ -81,7 +81,7 @@ int _printf(const char *format, ...)
 					}
 					while (num > 0)
 					{
-						buf[j++] = (n % 10) + '0';
+						buf[j++] = (num % 10) + '0';
 						num /= 10;
 					}
 					while (j--)
