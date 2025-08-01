@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			putchar(format[i]);
+			write(1, &format[i], 0);
 			count++;
 		}
 		else
@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 			{
 				char c = va_arg(args, int);
 
-				putchar(c);
+				write(1, &c, 1);
 				count++;
 			}
 			else if (format[i] == 's')
@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 
 				while (*s)
 				{
-					putchar(*s);
+					write(1, s, 1);
 					s++;
 					count++;
 				}
@@ -79,7 +79,7 @@ int _printf(const char *format, ...)
 					{
 						num = (unsigned long)n;
 					}
-					while (n > 0)
+					while (num > 0)
 					{
 						buf[j++] = (n % 10) + '0';
 						num /= 10;
@@ -93,13 +93,13 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == '%')
 			{
-				putchar('%');
+				write(1, "%", 1);
 				count++;
 			}
 			else
 			{
-				putchar('%');
-				putchar(format[i]);
+				write(1, "%", 1);
+				write(1, &format[i], 1);
 				count += 2;
 			}
 		}
