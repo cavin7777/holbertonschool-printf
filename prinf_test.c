@@ -55,42 +55,6 @@ int _printf(const char *format, ...)
 					count++;
 				}
 			}
-			else if (format[i] == 'd' || format[i] == 'i')
-			{
-				long n = (long)va_arg(args, int);
-				char buf[21];
-				int j = 0;
-				unsigned long num;
-
-				if (n == 0)
-				{
-					write(1, "0", 1);
-					count++;
-				}
-				else
-				{
-					if (n < 0)
-					{
-						write(1, "-", 1);
-						count++;
-						num = (unsigned long)(-n);
-					}
-					else
-					{
-						num = (unsigned long)n;
-					}
-					while (num > 0)
-					{
-						buf[j++] = (num % 10) + '0';
-						num /= 10;
-					}
-					while (j--)
-					{
-						write(1, &buf[j], 1);
-						count++;
-					}
-				}
-			}
 			else if (format[i] == '%')
 			{
 				write(1, "%", 1);
